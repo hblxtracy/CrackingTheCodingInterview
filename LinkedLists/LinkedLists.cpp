@@ -5,10 +5,6 @@
 #include <iostream>
 using namespace std;
 
-
-
-
-
 //2.5 Loop Detection: Given a circular linked list, implement an algorithm that returns the node at the
 //beginning of the loop.
 //DEFINITION
@@ -60,57 +56,69 @@ void PrintList(Node* head)
 //FOLLOW UP
 //How would you solve this problem if a temporary buffer is not allowed ?
 //Hints : #9, #40
+
 void RemoveDups(Node* head)
 {
-	if (head == NULL)
-		return;
-	else if (head->next == NULL)
-		return;
-
-	Node* current = head->next;
+	if (head == NULL) return;
+	if (head->next == NULL) return;
+	
 	Node* previous = head;
-	Node* p;
-	while (current != NULL)
+	Node* current = head->next;
+	Node* runner = head;
+
+	while (current!=NULL)
 	{
-		p = head;
-		while ((p != current))
+		runner = head;
+		while (runner != current)
 		{
-			if (p->data == current->data)
+			if (runner->data == current->data)
 			{
-				previous->next = current->next; //delete current
-				current = previous;  //shift one node backwards
-				break;
+				//remove current
+				previous->next = current->next;
+				current = current->next;
+				break;				
 			}
-			p = p->next;
+
+			//moving runner
+			runner = runner->next;
 		}
-		previous = current;
-		current = current->next;
+
+		if (runner == current)
+		{
+			//update current
+			previous = current;
+			current = current->next;	
+		}
 	}
-
-	PrintList(head);
 }
-
 
 //2.2 Return Kth to Last: Implement an algorithm to find the kth to last element of a singly linked list.
 //Hints:#8, #25, #41, #67, #126
-
 Node* FindKtoLastNode(Node* head, int k)
 {
-	Node* node2 = head;
+	if (head == NULL || k < 1)
+		return NULL;
+
 	Node* node1 = head;
+	Node* node2 = head;
 	int count = 0;
-	while (node2 != NULL)
+	while (node1!=NULL)
 	{
-		count++;
-		node2 = node2->next;
-		if (count > k)
+		if (count<k)
 		{
 			node1 = node1->next;
+			count++;
 		}
-	}
-	return node1;
-}
+		else
+		{
+			node1 = node1->next;
+			node2 = node2->next;
+		}
 
+	}
+
+	return node2;
+}
 //2.3 Delete Middle Node: Implement an algorithm to delete a node in the middle (i.e., any node but
 //the first and last node, not necessarily the exact middle) of a singly linked list, given only access to
 //that node.
@@ -226,10 +234,11 @@ int main()
 
 
 
-	//RemoveDups(head);
-	//Node* node1 = FindKtoLastNode(head, 4);
+	RemoveDups(head);
+	//Node* node1 = FindKtoLastNode(head, 2);
+	//PrintList(node1);
 	//DeleteMiddleNode(middlenode);
-	//PrintList(head);
+	PrintList(head);
 
 
 
