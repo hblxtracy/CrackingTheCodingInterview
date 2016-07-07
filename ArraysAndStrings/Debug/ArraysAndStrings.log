@@ -1,4 +1,0 @@
-﻿  stdafx.cpp
-  ArraysAndStrings.cpp
-c:\users\hblx_\documents\books\algorithms\algorithmsdemo\crackingthecodinginterview\arraysandstrings\arraysandstrings.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
-  ArraysAndStrings.vcxproj -> C:\Users\hblx_\Documents\Books\Algorithms\AlgorithmsDemo\CrackingTheCodingInterview\Debug\ArraysAndStrings.exe
