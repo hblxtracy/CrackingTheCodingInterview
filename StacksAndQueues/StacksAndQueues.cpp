@@ -3,8 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
-#include <stack>
-#include <queue>
+#include "StackMin.h"
 using namespace std;
 
 //3.1 Three in One: Describe how you could use a single array to implement three stacks.
@@ -44,6 +43,16 @@ using namespace std;
 
 int main()
 {
+	StackMin MyMinStack;
+	cout << MyMinStack.IsEmpty() << endl;
+
+	MyMinStack.Push(25);
+	cout << MyMinStack.IsEmpty() << endl;
+
+	MyMinStack.Print();
+
+	getchar();
+
     return 0;
 }
 
