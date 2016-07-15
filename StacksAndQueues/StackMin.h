@@ -12,6 +12,7 @@ public:
 	int Peek();
 	bool IsEmpty();
 	void Print();
+	int Min();
 
 private:
 	struct Node

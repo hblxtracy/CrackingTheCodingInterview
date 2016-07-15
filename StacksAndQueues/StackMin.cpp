@@ -5,7 +5,7 @@ using namespace std;
 
 StackMin::StackMin()
 {
-	top = NULL;
+	top = NULL;	
 }
 
 StackMin::~StackMin()
@@ -22,6 +22,17 @@ void StackMin::Push(int data)
 {
 		Node* temp = new Node;
 		temp->data = data;
+
+		if (top != NULL)
+		{
+			if (data < top->currentMin)
+				temp->currentMin = data;
+			else
+				temp->currentMin = top->currentMin;
+		}
+		else
+			temp->currentMin = data;
+
 		temp->previous = top;
 		top = temp;
 }
@@ -37,6 +48,13 @@ int StackMin::Pop()
 	value = temp->data;
 	delete temp;
 	return value;
+}
+
+int StackMin::Min()
+{
+	if (top == NULL)
+		throw new exception("Stack is empty!/n");
+	return top->currentMin;
 }
 
 int StackMin::Peek()
@@ -55,12 +73,16 @@ bool StackMin::IsEmpty()
 
 void StackMin::Print()
 {
+	if (top == NULL)
+		throw new exception("Stack is empty!\n");
 	cout << "Print Stack: ";
-	while (top!=NULL)
+	Node* temp = new Node;
+	temp = top;
+	while (temp != NULL)
 	{
-		cout << top->data << " ";
-		top = top->previous;
+		cout << temp->data << " ";
+		temp = temp->previous;
 	}
+	delete temp;
 	cout << "\n";
-
 }

@@ -27,15 +27,21 @@
     <ClInclude Include="StackMin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="QueueViaStacks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StacksAndQueues.cpp">
+    <ClCompile Include="StackMin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StackMin.cpp">
+    <ClCompile Include="QueueViaStacks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
