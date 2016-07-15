@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include "StackMin.h"
+#include "QueueViaStacks.h"
 using namespace std;
 
 //3.1 Three in One: Describe how you could use a single array to implement three stacks.
@@ -64,7 +65,15 @@ int main()
 
 	//3.4 Queue via Stacks : Implement a MyQueue class which implements a queue using two stacks.
 	//Hints : #98, #114
-
+	QueueViaStacks MyQueue;
+	//MyQueue.Enqueue(15);
+	//MyQueue.Enqueue(20);
+	//MyQueue.Enqueue(25);
+	cout << "Size of my QViaStacks: " << MyQueue.Size() << endl;
+	cout << "Peek my QViaStacks: " << MyQueue.Peek()<<endl;
+	MyQueue.Dequeue();
+	cout << "Dequeue and Peek: " << MyQueue.Peek() << endl;
+	cout << "Size of my QViaStacks: " << MyQueue.Size() << endl;
 
 	getchar();
 

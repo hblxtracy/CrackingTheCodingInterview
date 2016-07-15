@@ -1,24 +1,19 @@
 #pragma once
-#include<iostream>
+#include<stack>
 using namespace std;
 
-class QueueVisStacks
+class QueueViaStacks
 {
 public:
-	QueueVisStacks();
-	~QueueVisStacks();
+	QueueViaStacks();
+	~QueueViaStacks();
 
-	void Add(int data);
-	int Remove();
+	void Enqueue(int data);
+	int Dequeue();
 	int Peek();
+	int Size();
 private:
-
+	stack<int> stackOne;
+	stack<int> stackTwo;
 };
 
-QueueVisStacks::QueueVisStacks()
-{
-}
-
-QueueVisStacks::~QueueVisStacks()
-{
-}
