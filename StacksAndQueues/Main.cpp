@@ -5,6 +5,7 @@
 #include <iostream>
 #include "StackMin.h"
 #include "QueueViaStacks.h"
+#include "TowerOfHanoi.h"
 using namespace std;
 
 //3.1 Three in One: Describe how you could use a single array to implement three stacks.
@@ -42,6 +43,8 @@ int main()
 	//3.2 Stack Min: How would you design a stack which, in addition to push and pop, has a function min 
 	//which returns the minimum element ? Push, pop and min should all operate in O(1) time.
 	//Hints : #27, #59, #78
+	cout << endl;
+	cout << "StackMin: " << endl;
 
 	StackMin MyMinStack;
 	cout << MyMinStack.IsEmpty() << endl;
@@ -65,15 +68,39 @@ int main()
 
 	//3.4 Queue via Stacks : Implement a MyQueue class which implements a queue using two stacks.
 	//Hints : #98, #114
+	cout << endl;
+	cout << "QueueViaStacks: " << endl;
+
 	QueueViaStacks MyQueue;
-	//MyQueue.Enqueue(15);
-	//MyQueue.Enqueue(20);
-	//MyQueue.Enqueue(25);
+	MyQueue.Enqueue(15);
+	MyQueue.Enqueue(20);
+	MyQueue.Enqueue(25);
+	cout << "MyQueue£º 15 20 25.\n";
 	cout << "Size of my QViaStacks: " << MyQueue.Size() << endl;
 	cout << "Peek my QViaStacks: " << MyQueue.Peek()<<endl;
 	MyQueue.Dequeue();
 	cout << "Dequeue and Peek: " << MyQueue.Peek() << endl;
 	cout << "Size of my QViaStacks: " << MyQueue.Size() << endl;
+	MyQueue.Enqueue(35);
+	cout << "Dequeue and Peek: " << MyQueue.Peek() << endl;
+	cout << "Size of my QViaStacks: " << MyQueue.Size() << endl;
+	MyQueue.Dequeue();
+	cout << "Dequeue and Peek: " << MyQueue.Peek() << endl;
+	cout << "Size of my QViaStacks: " << MyQueue.Size() << endl;
+
+
+	//3.4 In the classic problem of the Towers of Hanoi, you have 3 rods and N disks of different
+    //sizes which can slide onto any tower.The puzzle starts with disks sorted in ascending
+	//order of size from top to bottom(e.g., each disk sits on top of an even larger one).You
+	//have the following constraints :
+	//(A)Only one disk can be moved at a time.
+	//(B)A disk is slid off the top of one rod onto the next rod.
+	//(C)A disk can only be placed on top of a larger disk.
+	//Write a program to move the disks from the first rod to the last using Stacks.
+	cout << endl;
+	cout << "TowerOfHanoi: " << endl;	
+	TowerOfHanoi MyTower(6);	
+	MyTower.SolveTOH();
 
 	getchar();
 
