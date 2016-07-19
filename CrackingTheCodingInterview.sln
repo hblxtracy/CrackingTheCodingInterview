@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArraysAndStrings", "ArraysAndStrings\ArraysAndStrings.vcxproj", "{A7410AB5-2924-4205-AC10-FF2B784884BE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinkedLists", "LinkedLists\LinkedLists.vcxproj", "{BACE03DC-366F-44AF-9EE9-F9B61F84A88E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StacksAndQueues", "StacksAndQueues\StacksAndQueues.vcxproj", "{1A3D7FC1-9529-4EBD-B748-948014B3592B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Recursion", "Recursion\Recursion.vcxproj", "{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,12 @@ Global
 		{1A3D7FC1-9529-4EBD-B748-948014B3592B}.Release|Win32.Build.0 = Release|Win32
 		{1A3D7FC1-9529-4EBD-B748-948014B3592B}.Release|x64.ActiveCfg = Release|x64
 		{1A3D7FC1-9529-4EBD-B748-948014B3592B}.Release|x64.Build.0 = Release|x64
+		{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}.Debug|Win32.Build.0 = Debug|Win32
+		{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}.Debug|x64.ActiveCfg = Debug|Win32
+		{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}.Release|Win32.ActiveCfg = Release|Win32
+		{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}.Release|Win32.Build.0 = Release|Win32
+		{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

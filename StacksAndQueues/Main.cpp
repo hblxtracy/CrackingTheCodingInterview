@@ -21,13 +21,6 @@ using namespace std;
 //Implement a function popAt(int index) which performs a pop operation on a specific sub - stack.
 //Hints:#64, #87
 
-
-
-//3.5 Sort Stack : Write a program to sort a stack such that the smallest items are on the top.You can use
-//an additional temporary stack, but you may not copy the elements into any other data structure
-//(such as an array).The stack supports the following operations : push, pop, peek, and is Empty.
-//Hints : # 15, #32, #43
-
 //3.6 Animal Shelter : An animal shelter, which holds only dogs and cats, operates on a strictly "first in, first 
 //out" basis. People must adopt either the "oldest" (based on arrival time) of all animals at the shelter, 
 //or they can select whether they would prefer a dog or a cat(and will receive the oldest animal of
@@ -35,8 +28,6 @@ using namespace std;
 //maintain this system and implement operations such as enqueue, dequeueAny, dequeueDog,
 //and dequeueCat.You may use the built - in Linked list data structure.
 //Hints : #22, #56, #63
-
-
 
 int main()
 {
@@ -101,6 +92,13 @@ int main()
 	cout << "TowerOfHanoi: " << endl;	
 	TowerOfHanoi MyTower(6);	
 	MyTower.SolveTOH();
+
+
+	//3.5 Sort Stack : Write a program to sort a stack such that the smallest items are on the top.You can use
+	//an additional temporary stack, but you may not copy the elements into any other data structure
+	//(such as an array).The stack supports the following operations : push, pop, peek, and is Empty.
+	//Hints : # 15, #32, #43
+
 
 	getchar();
 
