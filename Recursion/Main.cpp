@@ -2,25 +2,45 @@
 //
 
 #include "stdafx.h"
+#include<iostream>
+using namespace std;
 
-//8.1 Write a method to generate the nth Fibonacci number.
+int Fibonacci(int n)
+{
+	if (n < 0)
+		return -1;
+	if (n == 1)
+		return 1;
+	if (n == 2)
+		return 1;
+	return Fibonacci(n - 1) + Fibonacci(n - 2);
+}
 
-//8.1Triple Step: A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or 3
-//steps at a time.Implement a method to count how many possible ways the child can run up the
-//stairs.
-//Hints: #152, #178, #217, #237, #262, #359
+int TripleStep(int n)
+{
+	if (n < 1)
+		return 0;
+	if (n == 1)
+		return 1;
+	if (n == 2)
+		return 2;
+	if (n == 3)
+		return TripleStep(1) + TripleStep(2) + 1;
+	if (n > 3)
+		return TripleStep(n - 1) + TripleStep(n - 2) + TripleStep(n - 3);
+}
 
-//8.2 Robot in a Grid: Imagine a robot sitting on the upper left hand corner of an NxN grid.
-//The robot can only move in two directions : right and down.
-//How many possible paths are there for the robot ?
-//FOLLOW UP
-//Imagine certain squares are “off limits”, such that the robot can not step on them.
-//Design an algorithm to get all possible paths for the robot.
+
+//8.2 Robot in a Grid: Imagine a robot sitting on the upper left corner of grid with r rows and c columns. 
+//The robot can only move in two directions, right and down, but certain cells are "off limits" such that
+//the robot cannot step on them.Design an algorithm to find a path for the robot from the top left to
+//the bottom right.
+
 
 //8.3 Power Set: Write a method that returns all subsets of a set.
 
-//8.3 Magic Index: A magic index in an array A [ 0 ••• n -1] is defined to be an index such that A[ i] =
-//i.Given a sorted array of distinct integers, write a method to find a magic index, if one exists, in
+//8.3 Magic Index: A magic index in an array A [ 0...n -1] is defined to be an index such that A[i] = i.
+//Given a sorted array of distinct integers, write a method to find a magic index, if one exists, in
 //array A.
 //FOLLOW UP
 //What if the values are not distinct ?
@@ -70,8 +90,21 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	//8.1 Write a method to generate the nth Fibonacci number.
+	cout << "Fibonacci: ";
+	for (int i = 1; i < 15; i++)
+	{
+		cout << Fibonacci(i) << " ";
+	}
+	cout << "\n" ;
 
+	//8.1Triple Step: A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or 3
+	//steps at a time.Implement a method to count how many possible ways the child can run up the
+	//stairs.
+	//Hints: #152, #178, #217, #237, #262, #359
+	cout << "Triple Step(10): " << TripleStep(10) << endl;
 
+	getchar();
 	return 0;
 }
 

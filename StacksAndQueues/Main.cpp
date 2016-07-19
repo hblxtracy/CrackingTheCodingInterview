@@ -29,6 +29,30 @@ using namespace std;
 //and dequeueCat.You may use the built - in Linked list data structure.
 //Hints : #22, #56, #63
 
+
+stack<int> Sort(stack<int> s)
+{
+	stack<int> r;
+	int tmp;
+	while (!s.empty())
+	{
+		tmp = s.top();
+		s.pop();
+		if (!r.empty() && tmp > r.top())
+		{
+			while (!r.empty())
+			{
+				s.push(r.top());
+				r.pop();
+			}
+			s.push(tmp);
+		}
+		else
+			r.push(tmp);
+	}
+	return r;
+}
+
 int main()
 {
 	//3.2 Stack Min: How would you design a stack which, in addition to push and pop, has a function min 
@@ -93,12 +117,26 @@ int main()
 	TowerOfHanoi MyTower(6);	
 	MyTower.SolveTOH();
 
-
 	//3.5 Sort Stack : Write a program to sort a stack such that the smallest items are on the top.You can use
 	//an additional temporary stack, but you may not copy the elements into any other data structure
 	//(such as an array).The stack supports the following operations : push, pop, peek, and is Empty.
 	//Hints : # 15, #32, #43
-
+	cout << endl;
+	cout << "Sort Stack: 4 3 1 5 2" << endl;
+	stack<int> InputStack;
+	InputStack.push(2);
+	InputStack.push(5);
+	InputStack.push(1);
+	InputStack.push(3);
+	InputStack.push(4);
+	stack<int> result = Sort(InputStack);	
+	cout << "Sorted Stack: \n";
+	while(!result.empty())
+	{
+		cout << result.top()<<" ";
+		result.pop();
+	}
+	
 
 	getchar();
 
