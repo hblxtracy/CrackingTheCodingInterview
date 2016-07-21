@@ -46,8 +46,30 @@ int TripleStep(int n)
 //What if the values are not distinct ?
 //Hints : #770, #204, #240, #286, #340
 
-//8.4 Permutations without Dups: Write a method to compute all permutations of a string of unique
-//characters.
+
+void Swap(char* a, int i, int j)
+{
+	char tmp;
+	tmp = a[i];
+	a[i] = a[j];
+	a[j] = tmp;
+}
+
+void Permute(char* a, int i, int n)
+{	
+	if (i == n)
+		cout << a << endl;
+	else
+	{
+		for (int j = i; j <= n; j++)
+		{
+			Swap(a, i, j);
+			Permute(a, i + 1, n);
+			Swap(a, i, j);
+		}
+	}
+	
+}
 
 //8.8 Permutations with Dups: Write a method to compute all permutations of a string whose characters
 //are not necessarily unique.The list of permutations should not have duplicates.
@@ -58,6 +80,19 @@ int TripleStep(int n)
 //EXAMPLE:
 //input : 3 (e.g., 3 pairs of parentheses)
 //output : ()()(), ()(()), (())(), ((()))
+void AddParens(int n)
+{
+	if (n <1)
+		return;
+
+	//cout <<"a"<<n<<" ";
+	AddParens(n-1);
+	cout <<"<"<<n-1;
+	AddParens(n-1);
+	cout <<">"<<n-1;
+	return;
+
+}
 
 //8.5 Recursive Multiply : Write a recursive function to multiply two positive integers without using the
 //*operator.You can use addition, subtraction, and bit shifting, but you should minimize the number
@@ -103,6 +138,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	//stairs.
 	//Hints: #152, #178, #217, #237, #262, #359
 	cout << "Triple Step(10): " << TripleStep(10) << endl;
+
+	//8.4 Permutations without Dups: Write a method to compute all permutations of a string of unique
+	//characters.
+	cout << "Permutations without Dups: ABCDE" << endl;
+	char a[] = "ABCD";
+	Permute(a, 0, 3);
+
+	//AddParens(3);
 
 	getchar();
 	return 0;
