@@ -33,12 +33,45 @@ int TripleStep(int n)
 		return TripleStep(n - 1) + TripleStep(n - 2) + TripleStep(n - 3);
 }
 
+void RobotInGrid(string str, int r, int c)
+{
+	if (r < 0 || c < 0)
+		return;
+	if (r == 0 && c == 0)
+		cout << str << endl;
+	else
+	{
+		str.append("-");
+		RobotInGrid(str, r - 1, c);
 
-//8.2 Robot in a Grid: Imagine a robot sitting on the upper left corner of grid with r rows and c columns. 
-//The robot can only move in two directions, right and down, but certain cells are "off limits" such that
-//the robot cannot step on them.Design an algorithm to find a path for the robot from the top left to
-//the bottom right.
+		str.erase(str.end() - 1);
 
+		str.append("|");
+		RobotInGrid(str, r, c - 1);
+	}
+}
+
+void Parens(string str, int leftRem, int rightRem)
+{
+	if (leftRem > rightRem || leftRem < 0)
+		return;
+
+
+	if (leftRem == 0 && rightRem == 0)
+	{
+		cout << str << endl;
+	}
+	else
+	{
+		str.append("(");
+		Parens(str, leftRem - 1, rightRem);
+		str.erase(str.end() - 1);
+
+		str.append(")");
+		Parens(str, leftRem, rightRem - 1);
+	}
+
+}
 
 
 vector<string> PowerSet(string set, int n)
@@ -64,12 +97,30 @@ vector<string> PowerSet(string set, int n)
 	}
 }
 
-//8.3 Magic Index: A magic index in an array A [ 0...n -1] is defined to be an index such that A[i] = i.
-//Given a sorted array of distinct integers, write a method to find a magic index, if one exists, in
-//array A.
-//FOLLOW UP
-//What if the values are not distinct ?
-//Hints : #770, #204, #240, #286, #340
+
+int MagicIndex(int* a, int begin, int end)
+{
+	if ((end-begin)<2)
+		return -1;
+	else
+	{ 
+		int mid = (begin + end) / 2;
+		if (a[mid] > mid)
+		{
+			end = mid;
+			MagicIndex(a, begin, end);
+		}
+		else if (a[mid] < mid)
+		{
+			begin = mid;
+			MagicIndex(a, begin, end);
+		}
+		else
+		{
+			return mid;
+		}
+	}
+}
 
 void Permute(char*a, int begin, int end)
 {
@@ -115,30 +166,6 @@ void Permute(char*a, int begin, int end)
 //}
 
 
-void Parens(string str, int leftRem, int rightRem)
-{
-	if (leftRem > rightRem || leftRem < 0)
-		return;
-
-
-	if (leftRem == 0 && rightRem == 0)
-	{
-		cout << str << endl;
-	}
-	else
-	{
-		str.append("(");
-		Parens(str, leftRem - 1, rightRem);
-		str.erase(str.end() - 1);
-
-		str.append(")");
-		Parens(str, leftRem, rightRem - 1);
-	}
-
-	return;
-}
-
-
 //8.5 Recursive Multiply : Write a recursive function to multiply two positive integers without using the
 //*operator.You can use addition, subtraction, and bit shifting, but you should minimize the number
 //of those operations.
@@ -150,6 +177,14 @@ void Parens(string str, int leftRem, int rightRem)
 
 //8.7 Coins: Given an infinite number of quarters(25 cents), dimes(10 cents), nickels(5 cents) and pennies(1 cent), 
 //write code to calculate the number of ways of representing n cents.
+int MakeChange(int n)
+{
+	if (n < 5)
+		return 1;
+	if (n == 5)
+		return 2;
+}
+
 	
 //8.8 Eight Queens: Write an algorithm to print all ways of arranging eight queens on a chess board 
 //so that none of them share the same row, column or diagonal.
@@ -200,11 +235,11 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//8.3 Power Set: Write a method that returns all subsets of a set.
 	cout << "Power Set: ABCD" << endl;
-	string InputSet = "ABCD";
-	vector<string> result = PowerSet(InputSet, 4);
-	for (int i = 0; i < result.size(); i++)
+	string ps_input = "ABCD";
+	vector<string> ps_result = PowerSet(ps_input, 4);
+	for (int i = 0; i < ps_result.size(); i++)
 	{
-		cout << result.at(i) << " ";
+		cout << ps_result.at(i) << " ";
 	}
 	cout << endl;
 
@@ -214,8 +249,32 @@ int _tmain(int argc, _TCHAR* argv[])
 	//input : 3 (e.g., 3 pairs of parentheses)
 	//output : ()()(), ()(()), (())(), ((()))
 	cout << "Parens: 3" << endl;
-	string str2 = "";
-	Parens(str2, 3, 3);
+	string paraens_str = "";
+	Parens(paraens_str, 3, 3);
+
+	//8.2 Robot in a Grid: Imagine a robot sitting on the upper left corner of grid with r rows and c columns. 
+	//The robot can only move in two directions, right and down, but certain cells are "off limits" such that
+	//the robot cannot step on them.Design an algorithm to find a path for the robot from the top left to
+	//the bottom right.
+	cout << "Robot in a Grid: Row-2, Col-3" << endl;
+	string rg_str = "";
+	RobotInGrid(rg_str, 2, 3);
+
+	//8.3 Magic Index: A magic index in an array A [ 0...n -1] is defined to be an index such that A[i] = i.
+	//Given a sorted array of distinct integers, write a method to find a magic index, if one exists, in
+	//array A.
+	//FOLLOW UP
+	//What if the values are not distinct ?
+	//Hints : #770, #204, #240, #286, #340
+	cout << "MagicIndex: " <<endl;
+	int mi_input1[] = {-8, -5, 1, 2, 4, 8, 9, 13, 15, 35};
+	int mi_resut1 = MagicIndex(mi_input1, 0, 9);
+	cout << "resut1: " << mi_resut1 << endl;
+	int mi_input2[] = { -28, -15, -11, -3, 2, 3, 6, 8, 11, 12, 15};
+	int mi_resut2 = MagicIndex(mi_input2, 0, 10);
+	cout << "resut2: " << mi_resut2 << endl;
+
+
 
 	getchar();
 	return 0;
