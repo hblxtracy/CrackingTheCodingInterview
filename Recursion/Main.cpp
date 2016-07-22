@@ -3,6 +3,9 @@
 
 #include "stdafx.h"
 #include<iostream>
+#include<string>
+#include<vector>
+#include<set>
 using namespace std;
 
 int Fibonacci(int n)
@@ -37,7 +40,30 @@ int TripleStep(int n)
 //the bottom right.
 
 
-//8.3 Power Set: Write a method that returns all subsets of a set.
+
+vector<string> PowerSet(string set,int i, int n)
+{
+	vector<string> allsubsets;
+	if (i==n)
+	{		
+		allsubsets.push_back(string(1, set.at(n)));
+		//return allsubsets;
+	}
+	else
+	{
+		//char c = set.at(n);	
+		//string sc = string(1,c);
+		vector<string> tmplist = PowerSet(set, i + 1, n);
+		
+		for (int j = 0;j < tmplist.size(); j++)
+		{
+			tmplist.push_back(string(1, set.at(n)) + tmplist[j]);
+		}
+		//tmplist.push_back(sc);
+	
+		return tmplist;
+	}
+}
 
 //8.3 Magic Index: A magic index in an array A [ 0...n -1] is defined to be an index such that A[i] = i.
 //Given a sorted array of distinct integers, write a method to find a magic index, if one exists, in
@@ -46,53 +72,55 @@ int TripleStep(int n)
 //What if the values are not distinct ?
 //Hints : #770, #204, #240, #286, #340
 
-
-void Swap(char* a, int i, int j)
+void Permute(char*a, int begin, int end)
 {
-	char tmp;
-	tmp = a[i];
-	a[i] = a[j];
-	a[j] = tmp;
-}
-
-void Permute(char* a, int i, int n)
-{	
-	if (i == n)
-		cout << a << endl;
+	if (begin == end)
+	{
+		cout << a<<endl;
+	}
 	else
 	{
-		for (int j = i; j <= n; j++)
+		for (int j = begin; j <= end; j++)
 		{
-			Swap(a, i, j);
-			Permute(a, i + 1, n);
-			Swap(a, i, j);
+			swap(a[begin], a[j]);
+			Permute(a, begin + 1, end);
+			swap(a[begin], a[j]);
 		}
-	}
-	
+	}	
 }
+
 
 //8.8 Permutations with Dups: Write a method to compute all permutations of a string whose characters
 //are not necessarily unique.The list of permutations should not have duplicates.
 //Hints:#761, #790, #222, #255
+
+//void PermuteWithDups(char*a, int begin, int end, bool* dupe)
+//{
+//	if (begin == end)
+//	{
+//		cout << a << endl;
+//	}
+//	else
+//	{
+//		for (int j = begin; j <= end; j++)
+//		{ 
+//			if (!dupe[a[j]])
+//			{
+//				dupe[a[j]] = true;
+//				swap(a[begin], a[j]);
+//				Permute(a, begin + 1, end);
+//				swap(a[begin], a[j]);
+//			}				
+//		}
+//	}
+//}
 
 //8.5 Parens: Implement an algorithm to print all valid(e.g., properly opened and closed) 
 //combinations of n - pairs of parentheses.
 //EXAMPLE:
 //input : 3 (e.g., 3 pairs of parentheses)
 //output : ()()(), ()(()), (())(), ((()))
-void AddParens(int n)
-{
-	if (n <1)
-		return;
 
-	//cout <<"a"<<n<<" ";
-	AddParens(n-1);
-	cout <<"<"<<n-1;
-	AddParens(n-1);
-	cout <<">"<<n-1;
-	return;
-
-}
 
 //8.5 Recursive Multiply : Write a recursive function to multiply two positive integers without using the
 //*operator.You can use addition, subtraction, and bit shifting, but you should minimize the number
@@ -141,11 +169,22 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//8.4 Permutations without Dups: Write a method to compute all permutations of a string of unique
 	//characters.
-	cout << "Permutations without Dups: ABCDE" << endl;
+	cout << "Permutations without Dups: ABCD" << endl;
 	char a[] = "ABCD";
+	string str = "ABCD";
 	Permute(a, 0, 3);
 
-	//AddParens(3);
+
+	//cout << "Permutations with Dups: ABBC" << endl;
+	//char b[] = "ABBC";
+	//bool dupe[256] = {false};
+	//PermuteWithDups(b, 0, 4, dupe);
+
+
+	//8.3 Power Set: Write a method that returns all subsets of a set.
+	cout << "Power Set: ABCD" << endl;
+	string InputSet = "ABCD";
+	vector<string> result = PowerSet(InputSet, 0, 3);
 
 	getchar();
 	return 0;
