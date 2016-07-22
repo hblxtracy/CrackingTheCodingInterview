@@ -41,27 +41,26 @@ int TripleStep(int n)
 
 
 
-vector<string> PowerSet(string set,int i, int n)
+vector<string> PowerSet(string set, int n)
 {
 	vector<string> allsubsets;
-	if (i==n)
-	{		
-		allsubsets.push_back(string(1, set.at(n)));
-		//return allsubsets;
+	if (n == 1)
+	{
+		allsubsets.push_back(set);
+		return allsubsets;
 	}
 	else
 	{
-		//char c = set.at(n);	
-		//string sc = string(1,c);
-		vector<string> tmplist = PowerSet(set, i + 1, n);
-		
-		for (int j = 0;j < tmplist.size(); j++)
+		string sc = string(1, set.at(0));
+		set.erase(set.begin());
+		allsubsets = PowerSet(set, n - 1);		
+		int psize = allsubsets.size();
+		for (int i = 0; i < psize; i++)
 		{
-			tmplist.push_back(string(1, set.at(n)) + tmplist[j]);
+			allsubsets.push_back(allsubsets[i] + sc);
 		}
-		//tmplist.push_back(sc);
-	
-		return tmplist;
+		allsubsets.push_back(sc);
+		return allsubsets;
 	}
 }
 
@@ -115,11 +114,29 @@ void Permute(char*a, int begin, int end)
 //	}
 //}
 
-//8.5 Parens: Implement an algorithm to print all valid(e.g., properly opened and closed) 
-//combinations of n - pairs of parentheses.
-//EXAMPLE:
-//input : 3 (e.g., 3 pairs of parentheses)
-//output : ()()(), ()(()), (())(), ((()))
+
+void Parens(string str, int leftRem, int rightRem)
+{
+	if (leftRem > rightRem || leftRem < 0)
+		return;
+
+
+	if (leftRem == 0 && rightRem == 0)
+	{
+		cout << str << endl;
+	}
+	else
+	{
+		str.append("(");
+		Parens(str, leftRem - 1, rightRem);
+		str.erase(str.end() - 1);
+
+		str.append(")");
+		Parens(str, leftRem, rightRem - 1);
+	}
+
+	return;
+}
 
 
 //8.5 Recursive Multiply : Write a recursive function to multiply two positive integers without using the
@@ -184,7 +201,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	//8.3 Power Set: Write a method that returns all subsets of a set.
 	cout << "Power Set: ABCD" << endl;
 	string InputSet = "ABCD";
-	vector<string> result = PowerSet(InputSet, 0, 3);
+	vector<string> result = PowerSet(InputSet, 4);
+	for (int i = 0; i < result.size(); i++)
+	{
+		cout << result.at(i) << " ";
+	}
+	cout << endl;
+
+	//8.5 Parens: Implement an algorithm to print all valid(e.g., properly opened and closed) 
+	//combinations of n - pairs of parentheses.
+	//EXAMPLE:
+	//input : 3 (e.g., 3 pairs of parentheses)
+	//output : ()()(), ()(()), (())(), ((()))
+	cout << "Parens: 3" << endl;
+	string str2 = "";
+	Parens(str2, 3, 3);
 
 	getchar();
 	return 0;
