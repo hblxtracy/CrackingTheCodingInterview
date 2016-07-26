@@ -140,30 +140,30 @@ void Permute(char*a, int begin, int end)
 }
 
 
-//8.8 Permutations with Dups: Write a method to compute all permutations of a string whose characters
-//are not necessarily unique.The list of permutations should not have duplicates.
-//Hints:#761, #790, #222, #255
 
-//void PermuteWithDups(char*a, int begin, int end, bool* dupe)
-//{
-//	if (begin == end)
-//	{
-//		cout << a << endl;
-//	}
-//	else
-//	{
-//		for (int j = begin; j <= end; j++)
-//		{ 
-//			if (!dupe[a[j]])
-//			{
-//				dupe[a[j]] = true;
-//				swap(a[begin], a[j]);
-//				Permute(a, begin + 1, end);
-//				swap(a[begin], a[j]);
-//			}				
-//		}
-//	}
-//}
+
+void PermuteWithDups(char*a, int begin, int end)
+{
+	if (begin == end)
+	{
+		cout << a << endl;
+	}
+	else
+	{
+		bool dupe[256] = { false };
+		for (int j = begin; j <= end; j++)
+		{ 
+
+			if (!dupe[a[j]])
+			{
+				dupe[a[j]] = true;
+				swap(a[begin], a[j]);
+				PermuteWithDups(a, begin + 1, end);
+				swap(a[begin], a[j]);
+			}	
+		}
+	}
+}
 
 
 //8.5 Recursive Multiply : Write a recursive function to multiply two positive integers without using the
@@ -226,11 +226,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	string str = "ABCD";
 	Permute(a, 0, 3);
 
-
-	//cout << "Permutations with Dups: ABBC" << endl;
-	//char b[] = "ABBC";
-	//bool dupe[256] = {false};
-	//PermuteWithDups(b, 0, 4, dupe);
+	//8.8 Permutations with Dups: Write a method to compute all permutations of a string whose characters
+	//are not necessarily unique.The list of permutations should not have duplicates.
+	//Hints:#761, #790, #222, #255
+	cout << "Permutations with Dups: ABBC" << endl;
+	char b[] = "ABBC";
+	PermuteWithDups(b, 0, 3);
 
 
 	//8.3 Power Set: Write a method that returns all subsets of a set.
