@@ -166,10 +166,22 @@ void PermuteWithDups(char*a, int begin, int end)
 }
 
 
-//8.5 Recursive Multiply : Write a recursive function to multiply two positive integers without using the
-//*operator.You can use addition, subtraction, and bit shifting, but you should minimize the number
-//of those operations.
-//Hints : #166, #203, #227, #234, #246, #280
+int RecursiveMutiply(int a, int b)
+{
+	if (b == 1)
+		return a;
+	else
+	{
+		if (b & 1)
+		{
+			return a + RecursiveMutiply(a << 1, b >> 1);
+		}
+		else
+		{
+			return RecursiveMutiply(a << 1, b >> 1);
+		}
+	}
+}
 
 //8.6 Paint Fill: Implement the "paint fill" function that one might see on many image editing programs.
 //That is, given a screen(represented by a two - dimensional array of colors), a point, and a new color,
@@ -276,6 +288,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "resut2: " << mi_resut2 << endl;
 
 
+	//8.5 Recursive Multiply: Write a recursive function to multiply two positive integers without using the
+	//*operator.You can use addition, subtraction, and bit shifting, but you should minimize the number
+	//of those operations.
+	//Hints : #166, #203, #227, #234, #246, #280
+	cout << "Recursive Multiply: " << endl;
+	cout <<"9 * 9 = "<< RecursiveMutiply(9, 9) << endl;
 
 	getchar();
 	return 0;
