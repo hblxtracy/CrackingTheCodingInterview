@@ -189,17 +189,64 @@ int RecursiveMutiply(int a, int b)
 
 //8.7 Coins: Given an infinite number of quarters(25 cents), dimes(10 cents), nickels(5 cents) and pennies(1 cent), 
 //write code to calculate the number of ways of representing n cents.
-int MakeChange(int n)
-{
-	if (n < 5)
-		return 1;
-	if (n == 5)
-		return 2;
-}
+//int MakeChange(int n)
+//{
+//	if (n>=1 && n < 5)
+//		return 1;
+//	if (n >= 5 && n < 10)
+//		return 2;
+//
+//	if (n > 25)
+//	{
+//		int m = n % 25;
+//
+//	}
+//}
 
 	
-//8.8 Eight Queens: Write an algorithm to print all ways of arranging eight queens on a chess board 
-//so that none of them share the same row, column or diagonal.
+
+void EightQueens(bool board[8][8], int r, vector<int> list)
+{
+	if (r == 7)
+	{
+		for (int j = 0; j < list.size(); j++)
+			cout << list.at(j) << " ";
+		cout << endl;
+		return;
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		if (!board[r][i])
+		{			
+			for (int tmp = 0; tmp < 8; tmp++)
+			{
+				board[tmp][i] = true;
+				board[r][tmp] = true;
+				if (r - tmp >= 0 && r - tmp < 8 && i + tmp >= 0 && i + tmp < 8)
+					board[r - tmp][i + tmp] = true;
+				if (r - tmp >= 0 && r - tmp < 8 && i - tmp >= 0 && i - tmp < 8)
+					board[r - tmp][i - tmp] = true;
+				if (r + tmp >= 0 && r + tmp < 8 && i - tmp >= 0 && i - tmp < 8)
+					board[r + tmp][i - tmp] = true;
+				if (r + tmp >= 0 && r + tmp < 8 && i + tmp >= 0 && i + tmp < 8)
+					board[r + tmp][i + tmp] = true;
+			}
+
+			cout << "current board:" << endl;
+			for (int m = 0; m < 8; m++)
+			{
+				for (int n = 0; n < 8; n++)
+					cout << board[m][n] << " ";
+				cout << endl;
+			}
+			//board[r][i] = true;
+			list.push_back(r);
+			list.push_back(i);
+			EightQueens(board, r + 1, list);
+		}
+	}
+	//return;
+}
 
 //8.13 Stack of Boxes : You have a stack of n boxes, with widths wi, heights hi, and depths di.The boxes
 //cannot be rotated and can only be stacked on top of one another if each box in the stack is strictly
@@ -294,6 +341,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Hints : #166, #203, #227, #234, #246, #280
 	cout << "Recursive Multiply: " << endl;
 	cout <<"9 * 9 = "<< RecursiveMutiply(9, 9) << endl;
+
+	//8.8 Eight Queens: Write an algorithm to print all ways of arranging eight queens on a chess board 
+	//so that none of them share the same row, column or diagonal.
+	cout << "Eight Queens: " << endl;
+	//bool** board = new bool*[8];
+	//for (int i = 0; i <8; i++)
+	//	board[i] = new bool[8];
+	bool board[8][8] = { { false } };
+	vector<int> list;
+	EightQueens(board, 0, list);
 
 	getchar();
 	return 0;
