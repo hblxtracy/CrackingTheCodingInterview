@@ -201,51 +201,79 @@ int RecursiveMutiply(int a, int b)
 //		int m = n % 25;
 //
 //	}
-//}
+//}	
 
-	
-
-void EightQueens(bool board[8][8], int r, vector<int> list)
+void EightQueens(bool board[][8], int r, int boardsize, vector<int> list)
 {
-	if (r == 7)
+	if (list.size() == 2 * boardsize)
 	{
 		for (int j = 0; j < list.size(); j++)
 			cout << list.at(j) << " ";
 		cout << endl;
-		return;
 	}
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < boardsize; i++)
 	{
 		if (!board[r][i])
-		{			
-			for (int tmp = 0; tmp < 8; tmp++)
+		{
+			vector<int> rowlist;
+			vector<int> collist;
+			for (int tmp = 0; tmp < boardsize; tmp++)
 			{
-				board[tmp][i] = true;
-				board[r][tmp] = true;
-				if (r - tmp >= 0 && r - tmp < 8 && i + tmp >= 0 && i + tmp < 8)
-					board[r - tmp][i + tmp] = true;
-				if (r - tmp >= 0 && r - tmp < 8 && i - tmp >= 0 && i - tmp < 8)
-					board[r - tmp][i - tmp] = true;
-				if (r + tmp >= 0 && r + tmp < 8 && i - tmp >= 0 && i - tmp < 8)
-					board[r + tmp][i - tmp] = true;
-				if (r + tmp >= 0 && r + tmp < 8 && i + tmp >= 0 && i + tmp < 8)
-					board[r + tmp][i + tmp] = true;
-			}
+				if (!board[tmp][i])
+				{
+					board[tmp][i] = true;
+					rowlist.push_back(tmp);
+					collist.push_back(i);
+				}
 
-			cout << "current board:" << endl;
-			for (int m = 0; m < 8; m++)
-			{
-				for (int n = 0; n < 8; n++)
-					cout << board[m][n] << " ";
-				cout << endl;
+				if (!board[r][tmp])
+				{
+					board[r][tmp] = true;
+					rowlist.push_back(r);
+					collist.push_back(tmp);
+				}
+
+				if (!board[r - tmp][i + tmp] && r - tmp >= 0 && r - tmp < boardsize && i + tmp >= 0 && i + tmp < boardsize)
+				{
+					board[r - tmp][i + tmp] = true;
+					rowlist.push_back(r - tmp);
+					collist.push_back(i + tmp);
+				}
+
+				if (!board[r - tmp][i - tmp] && r - tmp >= 0 && r - tmp < boardsize && i - tmp >= 0 && i - tmp < boardsize)
+				{
+					board[r - tmp][i - tmp] = true;
+					rowlist.push_back(r - tmp);
+					collist.push_back(i - tmp);
+				}
+
+				if (!board[r + tmp][i - tmp] && r + tmp >= 0 && r + tmp < boardsize && i - tmp >= 0 && i - tmp < boardsize)
+				{
+					board[r + tmp][i - tmp] = true;
+					rowlist.push_back(r + tmp);
+					collist.push_back(i - tmp);
+				}
+
+				if (!board[r + tmp][i + tmp] && r + tmp >= 0 && r + tmp < boardsize && i + tmp >= 0 && i + tmp < boardsize)
+				{
+					board[r + tmp][i + tmp] = true;
+					rowlist.push_back(r + tmp);
+					collist.push_back(i + tmp);
+				}
+
 			}
-			//board[r][i] = true;
 			list.push_back(r);
 			list.push_back(i);
-			EightQueens(board, r + 1, list);
+			EightQueens(board, r + 1, boardsize, list);
+			list.pop_back();
+			list.pop_back();
+			for (int k = 0; k < rowlist.size(); k++)
+			{
+				board[rowlist.at(k)][collist.at(k)] = false;
+			}
 		}
 	}
-	//return;
+	return;
 }
 
 //8.13 Stack of Boxes : You have a stack of n boxes, with widths wi, heights hi, and depths di.The boxes
@@ -348,9 +376,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	//bool** board = new bool*[8];
 	//for (int i = 0; i <8; i++)
 	//	board[i] = new bool[8];
-	bool board[8][8] = { { false } };
+	const int boardsize = 8;
+	bool board[boardsize][boardsize] = { { false } };
 	vector<int> list;
-	EightQueens(board, 0, list);
+	EightQueens(board, 0, boardsize, list);
 
 	getchar();
 	return 0;
