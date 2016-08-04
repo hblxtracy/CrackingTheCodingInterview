@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StacksAndQueues", "StacksAn
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Recursion", "Recursion\Recursion.vcxproj", "{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TreesAndGraphs", "TreesAndGraphs\TreesAndGraphs.vcxproj", "{E1904CCC-7700-4483-8513-FAB670854572}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -45,6 +47,12 @@ Global
 		{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}.Release|Win32.ActiveCfg = Release|Win32
 		{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}.Release|Win32.Build.0 = Release|Win32
 		{FFD953A5-5BBB-4EE8-98B0-C9CB105748CF}.Release|x64.ActiveCfg = Release|Win32
+		{E1904CCC-7700-4483-8513-FAB670854572}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E1904CCC-7700-4483-8513-FAB670854572}.Debug|Win32.Build.0 = Debug|Win32
+		{E1904CCC-7700-4483-8513-FAB670854572}.Debug|x64.ActiveCfg = Debug|Win32
+		{E1904CCC-7700-4483-8513-FAB670854572}.Release|Win32.ActiveCfg = Release|Win32
+		{E1904CCC-7700-4483-8513-FAB670854572}.Release|Win32.Build.0 = Release|Win32
+		{E1904CCC-7700-4483-8513-FAB670854572}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
