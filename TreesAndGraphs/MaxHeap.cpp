@@ -51,3 +51,17 @@ void MaxHeap::BuildHeap(int* A, int n)
 	}
 	return;
 }
+
+void MaxHeap::HeapSort(int* A, int n)
+{
+	BuildHeap(A, n);
+	for (int i = n - 1; i >0; i--)
+	{
+		int tmp = A[0];
+		A[0] = A[i];
+		A[i] = tmp;
+		MaxHeapify(A, i, 0);
+	}
+	return;
+
+}

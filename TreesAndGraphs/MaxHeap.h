@@ -11,5 +11,6 @@ public:
 	int Right(int i);
 	void MaxHeapify(int* A, int arrayLength, int i);
 	void BuildHeap(int* A, int arrayLength);
+	void HeapSort(int* A, int arrayLength);
 };
 

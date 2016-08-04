@@ -70,7 +70,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "Max-Heap: ";
 	PrintArray(maxHeapArray, heapSize);
 	myMaxHeap.BuildHeap(maxHeapArray, heapSize);
-	cout << "Build-Heap: ";
+	cout << "BuildHeap: ";
+	PrintArray(maxHeapArray, heapSize);
+
+	for (int i = 0; i < heapSize; i++)
+		*(maxHeapArray + i) = table[i];
+	cout << "Max-Heap: ";
+	PrintArray(maxHeapArray, heapSize);
+	myMaxHeap.HeapSort(maxHeapArray, heapSize);
+	cout << "HeapSort: ";
 	PrintArray(maxHeapArray, heapSize);
 
 	getchar();
