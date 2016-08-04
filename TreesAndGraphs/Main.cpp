@@ -8,6 +8,7 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	//Binary Search Tree
 	int inputArray[] = { 15, 6, 18, 3, 7, 17, 20, 2, 13, 4, 9};
 	cout << "Input Array:     " ;
 	BST myBST;
@@ -36,10 +37,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	myBST.Minimum(myBST.root);
 	myBST.SearchParent(myBST.root, 9);
 
-
 	cout << "Delete Node 15: ";
 	myBST.Delete(myBST.root, 15);	
 	myBST.InOrderTreeWalk(myBST.root);
+
+	//Max Heap
+
 
 	getchar();
 	return 0;
