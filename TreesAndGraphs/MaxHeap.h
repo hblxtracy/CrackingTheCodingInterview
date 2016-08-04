@@ -9,6 +9,7 @@ public:
 	int Parent(int i);
 	int Left(int i);
 	int Right(int i);
-	void MaxHeapify(int* A, int heapSize, int i);
+	void MaxHeapify(int* A, int arrayLength, int i);
+	void BuildHeap(int* A, int arrayLength);
 };
 
