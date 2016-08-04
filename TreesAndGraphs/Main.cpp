@@ -52,9 +52,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << endl;
 
 	//Max Heap
-	int table[] = {16, 4, 10, 14, 7, 9, 3, 2, 8, 1};
+	int table[] = {16, 4, 10, 14, 7, 9, 3, 2, 8, 1, 0, 0, 0, 0};
 	int heapSize = 10;
-	int* maxHeapArray = new int[heapSize];
+	int* maxHeapArray = new int[15];
 
 	for (int i = 0; i < heapSize; i++)
 		*(maxHeapArray + i) = table[i];
@@ -72,6 +72,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	myMaxHeap.BuildHeap(maxHeapArray, heapSize);
 	cout << "BuildHeap: ";
 	PrintArray(maxHeapArray, heapSize);
+	cout << "HeapExtractMax: " << myMaxHeap.HeapExtractMax(maxHeapArray, heapSize) << endl;
+	cout << "Remaining: ";		
+	PrintArray(maxHeapArray, heapSize - 1);
+	cout << "HeapInsert 32: \n";
+	myMaxHeap.HeapInsert(maxHeapArray, heapSize - 1, 32);
+	cout << "New Heap: ";
+	PrintArray(maxHeapArray, heapSize);
+
 
 	for (int i = 0; i < heapSize; i++)
 		*(maxHeapArray + i) = table[i];

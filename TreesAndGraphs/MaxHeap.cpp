@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MaxHeap.h"
-
+#include <iostream>
+using namespace std;
 
 MaxHeap::MaxHeap()
 {
@@ -62,6 +63,39 @@ void MaxHeap::HeapSort(int* A, int n)
 		A[i] = tmp;
 		MaxHeapify(A, i, 0);
 	}
-	return;
+	return;	
+}
 
+int MaxHeap::HeapExtractMax(int* A, int n)
+{
+	if (n <= 0)
+	{
+		cout << "Error: array size < 1!/n";
+		return -1000;
+	}
+	int max = A[0];
+	int tmp = A[0];
+	A[0] = A[n - 1];
+	A[n - 1] = tmp;
+	
+	MaxHeapify(A, n - 1, 0);
+
+	return max;
+}
+
+void MaxHeap::HeapInsert(int* A, int n, int key)
+{
+	int p, cur;	
+	p = Parent(n);
+	cur = n;
+	while (p >= 0 && A[p] < key)
+	{
+		A[cur] = A[p];
+		cur = p;		
+		p = Parent(p);
+		if (cur == 0)
+			break;
+	}
+	A[cur] = key;
+	return;
 }
