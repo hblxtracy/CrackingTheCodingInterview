@@ -36,6 +36,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	myBST.Minimum(myBST.root);
 	myBST.SearchParent(myBST.root, 9);
 
+
+	cout << "Delete Node 15: ";
+	myBST.Delete(myBST.root, 15);	
+	myBST.InOrderTreeWalk(myBST.root);
+
 	getchar();
 	return 0;
 }

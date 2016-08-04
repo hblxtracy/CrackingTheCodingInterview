@@ -16,6 +16,7 @@ public:
 	~BST();
 	void ClearTree(Node* t);
 	void Insert(Node* &t, int key);
+	Node* Delete(Node* &t, int key);
 	void InOrderTreeWalk(Node* t);
 	void PostOrderTreeWalk(Node* t);
 	void PreOrderTreeWalk(Node* t);

@@ -45,6 +45,50 @@ void BST::Insert(Node* &t, int newKey)
 		Insert(t->right, newKey);	
 }
 
+BST::Node* BST::Delete(Node* &t, int key)
+{
+
+	if (t == NULL)
+	{
+		cout << "Key is not found./n";
+		return t;
+	}
+
+	if (key < t->key)
+		Delete(t->left, key);
+	else if (key > t->key)
+		Delete(t->right, key);
+	else
+	{
+		if (t->left == NULL&&t->right == NULL)
+		{
+			delete t;
+			t = NULL;
+		}
+		else if (t->left != NULL&&t->right == NULL)
+		{
+			Node* temp = t;
+			t = t->left;
+			delete temp;
+			temp = NULL;
+		}
+		else if (t->left == NULL&&t->right != NULL)
+		{
+			Node* temp = t;
+			t = t->right;
+			delete temp;
+			temp = NULL;
+		}
+		else
+		{
+			Node* n = Minimum(t->right);
+			t->key = n->key;
+			Delete(t->right, n->key);
+		}
+		return t;
+	}	
+}
+
 void BST::InOrderTreeWalk(Node* t)
 {
 	if (t == NULL)
