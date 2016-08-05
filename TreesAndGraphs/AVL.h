@@ -1,17 +1,23 @@
 #pragma once
 #include"BST.h"
-class AVL:private BST
+class AVL
 {
 private:
-	struct AVLNode:Node
+	struct Node
 	{
+		int key;
+		Node* left;
+		Node* right;
 		int height;
 	};
 public:
+	Node* root;
 	AVL();
 	~AVL();
-	using BST::ClearTree;
-	int Height(AVLNode* &t);
-	void Insert(AVLNode* &t, int key);
+	void ClearTree(Node* t);
+	int CalHeight(Node* &t);
+	void Insert(Node* &t, int key);
+	void InOrderTreeWalk(Node* t);
+	void Rebalance(Node* &t);
 };
 

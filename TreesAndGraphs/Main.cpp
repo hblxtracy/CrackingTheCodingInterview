@@ -19,9 +19,9 @@ void PrintArray(int* A, int size)
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//Binary Search Tree
-	int bstArraySize = 11;
-		int bstArray[] = { 15, 6, 18, 3, 7, 17, 20, 2, 13, 4, 9 };
-	cout << "Input Array:     " ;
+	int bstArraySize = 11;		
+	int bstArray[] = { 15, 6, 18, 3, 7, 17, 20, 2, 13, 4, 9 };
+	cout << "BST Input Array: " ;
 	PrintArray(bstArray, bstArraySize);
 
 	BST myBST;
@@ -91,9 +91,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << endl;
 
 	//AVL tree
+	int avlArraySize = 11;
+	int avlArray[] = { 15, 6, 18, 3, 7, 17, 20, 2, 13, 4, 9 };
+	cout << "AVL Input Array: ";
+	PrintArray(bstArray, bstArraySize);
 	AVL myAVL;
-	//for (int i = 0; i < bstArraySize; i++)
-	//myAVL.Insert(myBST.root, bstArray[i]);
+	for (int i = 0; i < bstArraySize; i++)
+		myAVL.Insert(myAVL.root, bstArray[i]);
+	myAVL.InOrderTreeWalk(myAVL.root);
 
 	getchar();
 	return 0;

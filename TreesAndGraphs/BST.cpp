@@ -27,22 +27,22 @@ void BST::ClearTree(Node* t)
 	return;
 }
 
-void BST::Insert(Node* &t, int newKey)
+void BST::Insert(Node* &t, int key)
 {
 	if (t==NULL)
 	{
 		Node* n = new Node;
-		n->key = newKey;
+		n->key = key;
 		n->left = NULL;
 		n->right = NULL;
 		t = n;
 		return;
 	}
 
-	if (newKey < t->key || newKey == t->key)
-		Insert(t->left, newKey);
+	if (key < t->key || key == t->key)
+		Insert(t->left, key);
 	else
-		Insert(t->right, newKey);	
+		Insert(t->right, key);
 }
 
 BST::Node* BST::Delete(Node* &t, int key)
