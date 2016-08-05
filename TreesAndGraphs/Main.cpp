@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "BST.h"
+#include "AVL.h"
 #include "MaxHeap.h"
 #include <iostream>
 using namespace std;
@@ -80,7 +81,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "New Heap: ";
 	PrintArray(maxHeapArray, heapSize);
 
-
 	for (int i = 0; i < heapSize; i++)
 		*(maxHeapArray + i) = table[i];
 	cout << "Max-Heap: ";
@@ -88,6 +88,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	myMaxHeap.HeapSort(maxHeapArray, heapSize);
 	cout << "HeapSort: ";
 	PrintArray(maxHeapArray, heapSize);
+	cout << endl;
+
+	//AVL tree
+	AVL myAVL;
+	//for (int i = 0; i < bstArraySize; i++)
+	//myAVL.Insert(myBST.root, bstArray[i]);
 
 	getchar();
 	return 0;

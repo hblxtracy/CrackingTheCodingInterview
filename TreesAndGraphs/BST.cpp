@@ -120,7 +120,6 @@ BST::Node* BST::Search(Node* t, int key)
 {
 	if (t == NULL)
 	{
-
 		cout << key << " is not found!\n";
 		return t;
 	}

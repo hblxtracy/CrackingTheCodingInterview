@@ -1,7 +1,7 @@
 #pragma once
 class BST
 {	
-private:
+protected:
 	struct Node
 	{
 		int key;
