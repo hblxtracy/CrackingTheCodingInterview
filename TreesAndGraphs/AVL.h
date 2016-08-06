@@ -6,8 +6,9 @@ private:
 	struct Node
 	{
 		int key;
-		Node* left;
-		Node* right;
+		Node* left = NULL;
+		Node* right = NULL;
+		Node* parent = NULL;
 		int height;
 	};
 public:

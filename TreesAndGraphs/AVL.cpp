@@ -27,9 +27,8 @@ void AVL::ClearTree(Node* t)
 	return;
 }
 
-int AVL::CalHeight(Node* &t )
-{
-	
+int AVL::CalHeight(Node* &t)
+{	
 	if (t == NULL)
 		return -1;
 	int l_height = (t->left == NULL) ? -1 : t->left->height;
@@ -43,9 +42,7 @@ void AVL::Insert(Node* &t, int key)
 	{
 		Node* n = new Node;
 		n->key = key;
-		n->left = NULL;
-		n->right = NULL;
-		n->height = 0;
+		n->height = CalHeight(n);
 		t = n;
 		return;
 	}
@@ -53,6 +50,7 @@ void AVL::Insert(Node* &t, int key)
 	if (key < t->key || key == t->key)
 	{
 		Insert(t->left, key);
+		t->left->parent = t;
 		t->height = CalHeight(t);
 		int balance = CalHeight(t->left) - CalHeight(t->right);
 		if (balance > 1 || balance < -1)
@@ -61,6 +59,7 @@ void AVL::Insert(Node* &t, int key)
 	else
 	{
 		Insert(t->right, key);
+		t->right->parent = t;
 		t->height = CalHeight(t);
 		int balance = CalHeight(t->left) - CalHeight(t->right);
 		if (balance > 1 || balance < -1)
@@ -79,4 +78,5 @@ void AVL::InOrderTreeWalk(Node* t)
 
 void AVL::Rebalance(Node *& t)
 {
+
 }
