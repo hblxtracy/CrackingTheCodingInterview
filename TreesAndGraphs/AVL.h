@@ -8,7 +8,7 @@ private:
 		int key;
 		Node* left = NULL;
 		Node* right = NULL;
-		Node* parent = NULL;
+		//Node* parent = NULL;
 		int height;
 	};
 public:
@@ -20,5 +20,7 @@ public:
 	void Insert(Node* &t, int key);
 	void InOrderTreeWalk(Node* t);
 	void Rebalance(Node* &t);
+	void RightRotation(Node* &t);
+	void LeftRotation(Node* &t);
 };
 
