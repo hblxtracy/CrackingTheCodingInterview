@@ -91,14 +91,34 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << endl;
 
 	//AVL tree
-	int avlArraySize = 11;
-	int avlArray[] = { 15, 6, 18, 3, 7, 17, 20, 2, 13, 4, 9 };
+	int avlArraySize =11;
+	//int avlArray[] = { 15, 6, 18, 3, 7, 17, 20, 2, 13, 4, 9 };
+	int avlArray[] = { 30, 50, 40, 60, 70, 17, 20, 2, 13, 4, 9 };
 	cout << "AVL Input Array: ";
-	PrintArray(bstArray, bstArraySize);
+	PrintArray(avlArray, avlArraySize);
 	AVL myAVL;
-	for (int i = 0; i < bstArraySize; i++)
-		myAVL.Insert(myAVL.root, bstArray[i]);
+	for (int i = 0; i < avlArraySize; i++)
+	{
+		myAVL.Insert(myAVL.root, avlArray[i]);
+		myAVL.InOrderTreeWalk(myAVL.root);
+		cout << endl;
+	}
+
+	cout << "Delete 30: \n";
+	myAVL.Delete(myAVL.root, 30);
 	myAVL.InOrderTreeWalk(myAVL.root);
+	cout << endl;
+
+	cout << "Delete 13: \n";
+	myAVL.Delete(myAVL.root, 13);
+	myAVL.InOrderTreeWalk(myAVL.root);
+	cout << endl;
+
+	cout << "Delete 20: \n";
+	myAVL.Delete(myAVL.root, 20);
+	myAVL.InOrderTreeWalk(myAVL.root);
+	cout << endl;
+
 
 	getchar();
 	return 0;

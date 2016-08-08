@@ -2,6 +2,7 @@
 #include "AVL.h" 
 #include <algorithm>
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -36,6 +37,83 @@ int AVL::CalHeight(Node* &t)
 	return max(l_height,r_height)+1;
 }
 
+AVL::Node* AVL::Delete(Node* &t, int key)
+{
+
+	if (t == NULL)
+	{
+		cout << "Key is not found./n";
+		return t;
+	}
+	int balance;
+	if (key < t->key)
+	{	
+		Delete(t->left, key);
+		t->height = CalHeight(t);
+		balance = CalHeight(t->left) - CalHeight(t->right);
+		if (balance > 1 || balance < -1)
+			Rebalance(t);
+	}		
+	else if (key > t->key)
+	{
+		Delete(t->right, key);
+		t->height = CalHeight(t);
+		balance = CalHeight(t->left) - CalHeight(t->right);
+		if (balance > 1 || balance < -1)
+			Rebalance(t);
+	}		
+	else
+	{
+		if (t->left == NULL&&t->right == NULL)
+		{
+			delete t;
+			t = NULL;
+		}
+		else if (t->left != NULL&&t->right == NULL)
+		{
+			Node* temp = t;
+			t = t->left;
+			delete temp;
+			temp = NULL;
+			t->height = CalHeight(t);
+		}
+		else if (t->left == NULL&&t->right != NULL)
+		{
+			Node* temp = t;
+			t = t->right;
+			delete temp;
+			temp = NULL;
+			t->height = CalHeight(t);
+		}
+		else
+		{
+			stack<Node*> trace;
+			Node* n = t->right;
+			trace.push(t);
+			while (n->left != NULL)
+			{
+				trace.push(n);
+				n = n->left;				
+			}
+			t->key = n->key;
+			Delete(t->right, n->key);
+
+			Node* tmp;
+			while (!trace.empty())
+			{
+				tmp = trace.top();
+				trace.pop();
+				tmp->height = CalHeight(tmp);
+				balance = CalHeight(tmp->left) - CalHeight(tmp->right);
+				if (balance > 1 || balance < -1)
+					Rebalance(tmp);
+			}
+		}
+
+		return t;
+	}
+}
+
 void AVL::Insert(Node* &t, int key)
 {
 	if (t == NULL)
@@ -50,21 +128,15 @@ void AVL::Insert(Node* &t, int key)
 	if (key < t->key || key == t->key)
 	{
 		Insert(t->left, key);
-		//t->left->parent = t;
-		t->height = CalHeight(t);
-		int balance = CalHeight(t->left) - CalHeight(t->right);
-		if (balance > 1 || balance < -1)
-			Rebalance(t);
 	}		
 	else
 	{
 		Insert(t->right, key);
-		//t->right->parent = t;
-		t->height = CalHeight(t);
-		int balance = CalHeight(t->left) - CalHeight(t->right);
-		if (balance > 1 || balance < -1)
-			Rebalance(t);
 	}		
+	t->height = CalHeight(t);
+	int balance = CalHeight(t->left) - CalHeight(t->right);
+	if (balance > 1 || balance < -1)
+		Rebalance(t);
 }
 
 void AVL::InOrderTreeWalk(Node* t)
@@ -80,26 +152,26 @@ void AVL::Rebalance(Node *& t)
 {
 	if (CalHeight(t->left)>CalHeight(t->right))   //left heavy
 	{
-		if(CalHeight(t->left->left)>CalHeight(t->left->right))  //LL
-		{ 
-			RightRotation(t);
-		}
-		else if(CalHeight(t->left->left)<CalHeight(t->left->right)) //LR
+		if(CalHeight(t->left->left)<CalHeight(t->left->right)) //LR
 		{
 			LeftRotation(t->left);
+			RightRotation(t);
+		}
+		else                                                    //LL
+		{
 			RightRotation(t);
 		}
 	}
 	else if(CalHeight(t->left)<CalHeight(t->right))  //right heavy
 	{ 
-		if (CalHeight(t->right->left)<CalHeight(t->right->right))  //RR
-		{
-			LeftRotation(t);
-		}
-		else if (CalHeight(t->right->left)>CalHeight(t->right->right)) //LR
+		if (CalHeight(t->right->left)>CalHeight(t->right->right)) //RL
 		{
 			RightRotation(t->right);
 			LeftRotation(t);
+		}
+		else                                                     //RR
+		{
+			LeftRotation(t); 
 		}
 	}
 	return;
@@ -124,3 +196,38 @@ void AVL::LeftRotation(Node *& t)
 	pivot->height = CalHeight(pivot);
 	t = pivot;
 }
+
+
+AVL::Node* AVL::Maximum(Node* t)
+{
+	if (t == NULL)
+	{
+		//cout << "Tree is empty./n";
+		return t;
+	}
+
+	while (t->right != NULL)
+	{
+		t = t->right;
+	}
+	//cout << "Maximum is: " << t->key << endl;
+	return t;
+}
+
+AVL::Node* AVL::Minimum(Node* t)
+{
+	if (t == NULL)
+	{
+		//cout << "Tree is empty./n";
+		return t;
+	}
+
+	while (t->left != NULL)
+	{
+		t = t->left;
+	}
+	//cout << "Minimum is: " << t->key << endl;
+	return t;
+}
+
+
