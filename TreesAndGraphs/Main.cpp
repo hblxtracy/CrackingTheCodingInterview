@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "BST.h"
 #include "AVL.h"
+#include "RB.h"
 #include "MaxHeap.h"
 #include <iostream>
 using namespace std;
