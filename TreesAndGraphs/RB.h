@@ -1,7 +1,6 @@
 #pragma once
 class RB
 {
-private:
 	struct Node
 	{
 		int key;
@@ -10,12 +9,14 @@ private:
 		Node* parent = NULL;
 		bool red;
 	};
-public:
+
 	Node* root;
+public:
 	RB();
 	~RB();
 	void ClearTree(Node* t);
 	void Insert(Node* &t, int key);
+	void InsertFix(Node* &t);
 	void RightRotation(Node* &t);
 	void LeftRotation(Node* &t);
 	bool IsRed(Node *t);
@@ -23,6 +24,7 @@ public:
 	Node* U(Node* &t);
 	Node* S(Node* &t);
 	Node* G(Node* &t);
-	Node* P(Node* &t);
+	Node* P(Node* const &t);
+	
 };
 

@@ -86,7 +86,7 @@ RB::Node* RB::G(Node* &t)
 	return t->parent->parent;
 }
 
-RB::Node* RB::P(Node* &t)
+RB::Node* RB::P(Node* const &t)
 {
 	return t->parent;
 }
@@ -151,9 +151,42 @@ void RB::Insert(Node* &t, int key)
 	}
 
 	if (t->left != NULL)
+	{
 		t->left->parent = t;
+		if (t->red)
+			InsertFix(t->left);
+	}
+		
 	if (t->right != NULL)
+	{ 	
 		t->right->parent = t;
+		if (t->red)
+			InsertFix(t->left);
+	}
+		
+
+}
+
+void RB::InsertFix(Node* &t)
+{
+	if(U(t)->red) //if uncle is red, change color of p, u and g.
+	{ 
+		Node* p = P(t);
+		Node* u = U(t);
+		Node* g = G(t);
+		ChangeColor(p);
+		ChangeColor(u);
+		ChangeColor(g);
+	}
+	else
+	{
 
 
+
+
+
+	}
+
+	if (root != NULL&root->red)
+		ChangeColor(root);
 }
