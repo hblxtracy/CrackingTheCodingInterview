@@ -125,14 +125,19 @@ void AVL::Insert(Node* &t, int key)
 		return;
 	}
 
-	if (key < t->key || key == t->key)
+	if (key < t->key)
 	{
 		Insert(t->left, key);
 	}		
-	else
+	else if (key>t->key)
 	{
 		Insert(t->right, key);
 	}		
+	else
+	{
+		cout << key << " is found, cannot insert!/n";
+		return;
+	}
 	t->height = CalHeight(t);
 	int balance = CalHeight(t->left) - CalHeight(t->right);
 	if (balance > 1 || balance < -1)

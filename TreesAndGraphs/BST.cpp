@@ -39,10 +39,15 @@ void BST::Insert(Node* &t, int key)
 		return;
 	}
 
-	if (key < t->key || key == t->key)
+	if (key < t->key)
 		Insert(t->left, key);
-	else
+	else if (key>t->key)
 		Insert(t->right, key);
+	else
+	{
+		cout << key << " is found, cannot insert!/n";
+		return;
+	}
 }
 
 BST::Node* BST::Delete(Node* &t, int key)
