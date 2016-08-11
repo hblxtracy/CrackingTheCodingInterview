@@ -163,30 +163,51 @@ void RB::Insert(Node* &t, int key)
 		if (t->red)
 			InsertFix(t->left);
 	}
-		
-
 }
 
 void RB::InsertFix(Node* &t)
 {
-	if(U(t)->red) //if uncle is red, change color of p, u and g.
-	{ 
-		Node* p = P(t);
-		Node* u = U(t);
-		Node* g = G(t);
+	Node* p = P(t);
+	Node* u = U(t);
+	Node* g = G(t);
+	if (IsRed(u)) //if uncle is red, change color of p, u and g.
+	{
 		ChangeColor(p);
 		ChangeColor(u);
-		ChangeColor(g);
+		if (g != root)
+			ChangeColor(g);		
 	}
 	else
 	{
 
+		if (t == p->right && p == g->right)  //RR
+		{
+			LeftRotation(g);
+		}
+		else if (t == p->left && p == g->right)  //RL
+		{
+			RightRotation(p);
+			LeftRotation(g);
+		}
+		else if (t == p->left && p == g->left)
+		{
+			RightRotation(g);
+		}
+		else
+		{
+			LeftRotation(p);
+			RightRotation(g);
+		}
 
-
-
-
+		bool tmp = IsRed(g);
+		g->red = p->red;
+		p->red = tmp;
 	}
 
 	if (root != NULL&root->red)
 		ChangeColor(root);
+
+	InsertFix(g);
+
+	return;
 }
