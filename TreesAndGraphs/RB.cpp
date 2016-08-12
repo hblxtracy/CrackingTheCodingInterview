@@ -150,7 +150,7 @@ void RB::LeftRotation(Node* &t)
 }
 
 
-void RB::Insert(Node* &t, int key)
+void RB::Insert(Node* &t,Node* &p, int key)
 {
 	if (t == NULL)
 	{
@@ -158,44 +158,38 @@ void RB::Insert(Node* &t, int key)
 		n->key = key;
 		n->left = NULL;
 		n->right = NULL;
+		n->parent = p;
 
 		if (t == root)
+		{
+			n->parent = NULL;
 			n->red = false;
+		}
+			
 		else
 			n->red = true;
 		t = n;
+
+		if (p != NULL&&p->red)
+			InsertFix(t);
 		return;
 	}
 
 	if (key < t->key)
-		Insert(t->left, key);
+		Insert(t->left,t, key);
 	else if (key>t->key)
-		Insert(t->right, key);
+		Insert(t->right,t, key);
 	else
 	{
 		cout << key << " is found, cannot insert!/n";
 		return;
-	}
-
-	if (t->left != NULL)
-	{
-		t->left->parent = t;
-		if (t->red)
-			InsertFix(t->left);
-	}
-		
-	if (t->right != NULL)
-	{ 	
-		t->right->parent = t;
-		if (t->red)
-			InsertFix(t->right);
 	}
 }
 
 void RB::InsertFix(Node* &t)
 {
 	bool tmp;
-	if (t == root||!t->red)
+	if (t == root||!t->parent->red)
 		return;
 	else
 	{
@@ -208,7 +202,7 @@ void RB::InsertFix(Node* &t)
 			ChangeColor(p);
 			ChangeColor(u);
 			if (g != root)
-				ChangeColor(g);
+				ChangeColor(g);		
 		}
 		else
 		{
@@ -218,7 +212,7 @@ void RB::InsertFix(Node* &t)
 				LeftRotation(g);
 				tmp = IsRed(g);
 				g->red = g->left->red;
-				g->left->red = tmp;
+				g->left->red = tmp;		
 			}
 			else if (t == p->left && p == g->right)  //RL
 			{
@@ -234,7 +228,6 @@ void RB::InsertFix(Node* &t)
 				tmp = IsRed(g);
 				g->red = g->right->red;
 				g->right->red = tmp;
-
 			}
 			else                                 //LR
 			{
@@ -249,6 +242,6 @@ void RB::InsertFix(Node* &t)
 		if (root != NULL&&root->red)
 			ChangeColor(root);
 		if (g->red)
-		InsertFix(g->child);
+			InsertFix(g);
 	}
 }

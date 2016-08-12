@@ -123,12 +123,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	//RB tree
 	int rbArraySize = 11;
 	int rbArray[] = { 1, 3, 2, 4, 5, 6, 8, 7, 9, 10, 11 };
+	//int rbArray[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 	cout << "RB Input Array: ";
 	PrintArray(rbArray, rbArraySize);
+
 	RB myRB;
 	for (int i = 0; i < rbArraySize; i++)
 	{
-		myRB.Insert(myRB.root, rbArray[i]);
+		myRB.Insert(myRB.root, myRB.root, rbArray[i]);
 		myRB.InOrderTreeWalk(myRB.root);
 		cout << endl;
 	}

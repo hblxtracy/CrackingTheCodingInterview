@@ -9,13 +9,16 @@ class RB
 		Node* parent = NULL;
 		bool red;
 	};
+
+	
 		
 public:
 	Node* root;
+
 	RB();
 	~RB();
 	void ClearTree(Node* t);
-	void Insert(Node* &t, int key);
+	void Insert(Node* &t, Node* &p, int key);
 	void InsertFix(Node* &t);
 	void RightRotation(Node* &t);
 	void LeftRotation(Node* &t);
