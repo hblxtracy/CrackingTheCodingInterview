@@ -222,7 +222,7 @@ void RB::Insert(Node* &t,Node* &p, int key)
 void RB::InsertFix(Node* &t)
 {
 	bool tmp;
-	if (t == root||!t->parent->red)
+	if (t == root || !t->parent->red)
 		return;
 	else
 	{
@@ -235,7 +235,7 @@ void RB::InsertFix(Node* &t)
 			ChangeColor(p);
 			ChangeColor(u);
 			if (g != root)
-				ChangeColor(g);		
+				ChangeColor(g);
 		}
 		else
 		{
@@ -245,7 +245,7 @@ void RB::InsertFix(Node* &t)
 				LeftRotation(g);
 				tmp = IsRed(g);
 				g->red = g->left->red;
-				g->left->red = tmp;		
+				g->left->red = tmp;
 			}
 			else if (t == p->left && p == g->right)  //RL
 			{
@@ -276,5 +276,209 @@ void RB::InsertFix(Node* &t)
 			ChangeColor(root);
 		if (g->red)
 			InsertFix(g);
+	}
+}
+
+void RB::DoubleBlackFix(Node* &x)
+{
+	Node* p = P(x);
+	Node* w = S(x);
+	if (x == root)
+		x->red = false;
+	//x's sibling w is red.
+	else if (x != root && IsRed(w))  
+	{
+		DBF_case1(x);      	
+	}
+	//x's sibling w is black and both w's children are black.
+	else if (x != root && !IsRed(w) && !IsRed(w->left) && !IsRed(w->right))
+	{
+		DBF_case2(x);
+	}
+	else if (x != root && !IsRed(w) && (IsRed(w->left) || IsRed(w->right)))
+	{
+		if ((x == p->left&&!IsRed(w->right)) || (x == p->right&&!IsRed(w->left)))
+		{
+			DBF_case3(x);
+		}
+		else
+		{
+			DBF_case4(x);
+		}
+	}
+	return;
+}
+
+//x's sibling w is red.
+void RB::DBF_case1(Node* &x)
+{
+	Node* w = S(x);
+	ChangeColor(w);
+	ChangeColor(x->parent);
+	if (x == x->parent->left)
+		LeftRotation(x->parent);
+	else
+		RightRotation(x->parent);
+	DoubleBlackFix(x);
+	return;
+}
+
+//x's sibling w is black and both w's children are black.
+void RB::DBF_case2(Node* &x)
+{
+	Node* w = S(x);
+	bool org_color_p = x->parent->red;
+	x->red = false;
+	w->red = true;
+	x->parent->red = false;
+	if (!org_color_p)
+	{
+		//Now x' parent is double black.
+		DoubleBlackFix(x->parent);
+	}
+	return;
+}
+
+void RB::DBF_case3(Node* &x)
+{
+	Node* w = S(x);
+	if (x == x->parent->left && IsRed(w->left))
+	{
+		ChangeColor(w);
+		ChangeColor(w->left);
+		RightRotation(w);
+	}
+	else
+	{
+		ChangeColor(w);
+		ChangeColor(w->right);
+		LeftRotation(w);
+	}
+	DoubleBlackFix(x);
+	return;
+}
+
+void RB::DBF_case4(Node* &x)
+{
+	Node* w = S(x);
+	Node* p = P(x);
+	bool tmp = p->red;
+	p->red = w->red;
+	w->red = tmp;
+	if (x = x->parent->left)
+	{
+		LeftRotation(p);
+	}
+	else
+	{
+		RightRotation(p);
+	}
+	return;
+}
+
+
+RB::Node* RB::Delete(Node* &t, int key)
+{
+
+	if (t == NULL)
+	{
+		cout << "Key is not found./n";
+		return t;
+	}
+
+	if (key < t->key)
+		Delete(t->left, key);
+	else if (key > t->key)
+		Delete(t->right, key);
+	//key is found, do deletion.
+	else                    
+	{
+		//Case A: both t's children are NULL.
+		if (t->left == NULL&&t->right == NULL)
+		{
+			bool color_t = t->red;
+			bool isRoot = (t == root) ? true : false;
+			Node* p = t->parent;
+			delete t;
+			t = NULL;
+			//t is red node or t is root node, delete it without doing anything.
+			if (color_t || isRoot)
+			{
+				//do nothing.
+			}
+			else                              
+			{			
+				//t is black and not root, p(t) is red => change p(t) to black and delete t.
+				if (p->red)           
+				{
+					ChangeColor(p);
+				}
+				//double black deletion.
+				else                          
+				{
+					DoubleBlackFix(p);
+				}
+			}			
+
+
+		}
+		//Case B1: one of t's child is NULL.
+		else if (t->left != NULL&&t->right == NULL)
+		{
+			bool color_t = t->red;
+			bool color_d = t->left->red;
+			Node* temp = t;
+			t = t->left;
+			t->parent = temp->parent;
+			delete temp;
+			temp = NULL;
+
+
+			if (color_t)
+			{ 			
+				//do nothing.
+			}
+			else if (!color_t&&color_d)
+			{ 
+				ChangeColor(t);
+			}
+			else if (!color_t&&!color_d)
+			{
+				DoubleBlackFix(t);
+			}
+
+		}
+		//Case B2: one of t's child is NULL.
+		else if (t->left == NULL&&t->right != NULL)
+		{
+			bool color_t = t->red;
+			bool color_d = t->right->red;
+			Node* temp = t;
+			t = t->right;
+			t->parent = temp->parent;
+			delete temp;
+			temp = NULL;
+
+			if (t->red)
+			{
+				//do nothing.
+			}
+			else if (!color_t&&color_d)
+			{
+				ChangeColor(t);
+			}
+			else if (!color_t&&!color_d)
+			{
+				DoubleBlackFix(t);
+			}
+		}
+		//Case C: both t's children are not NULL.
+		else
+		{
+			Node* n = Minimum(t->right);
+			t->key = n->key;
+			Delete(t->right, n->key);
+		}
+		return t;
 	}
 }
