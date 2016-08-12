@@ -10,6 +10,10 @@ private:
 		Node* right = NULL;
 		int height;
 	};
+
+	void Rebalance(Node* &t);
+	void RightRotation(Node* &t);
+	void LeftRotation(Node* &t);
 public:
 	Node* root;
 	AVL();
@@ -19,9 +23,6 @@ public:
 	void Insert(Node* &t, int key);
 	Node* Delete(Node* &t, int key);
 	void InOrderTreeWalk(Node* t);
-	void Rebalance(Node* &t);
-	void RightRotation(Node* &t);
-	void LeftRotation(Node* &t);
 	Node* Maximum(Node* t);
 	Node* Minimum(Node* t);
 };

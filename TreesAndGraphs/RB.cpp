@@ -91,6 +91,39 @@ RB::Node* RB::P(Node* &t)
 	return t->parent;
 }
 
+RB::Node* RB::Maximum(Node* t)
+{
+	if (t == NULL)
+	{
+		//cout << "Tree is empty./n";
+		return t;
+	}
+
+	while (t->right != NULL)
+	{
+		t = t->right;
+	}
+	//cout << "Maximum is: " << t->key << endl;
+	return t;
+}
+
+RB::Node* RB::Minimum(Node* t)
+{
+	if (t == NULL)
+	{
+		//cout << "Tree is empty./n";
+		return t;
+	}
+
+	while (t->left != NULL)
+	{
+		t = t->left;
+	}
+	//cout << "Minimum is: " << t->key << endl;
+	return t;
+}
+
+
 void RB::InOrderTreeWalk(Node* t)
 {
 	if (t == NULL)
