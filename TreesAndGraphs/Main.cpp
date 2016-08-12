@@ -120,6 +120,18 @@ int _tmain(int argc, _TCHAR* argv[])
 	myAVL.InOrderTreeWalk(myAVL.root);
 	cout << endl;
 
+	//RB tree
+	int rbArraySize = 11;
+	int rbArray[] = { 1, 3, 2, 4, 5, 6, 8, 7, 9, 10, 11 };
+	cout << "RB Input Array: ";
+	PrintArray(rbArray, rbArraySize);
+	RB myRB;
+	for (int i = 0; i < rbArraySize; i++)
+	{
+		myRB.Insert(myRB.root, rbArray[i]);
+		myRB.InOrderTreeWalk(myRB.root);
+		cout << endl;
+	}
 
 	getchar();
 	return 0;

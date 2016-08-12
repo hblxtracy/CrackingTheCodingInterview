@@ -189,7 +189,10 @@ void AVL::RightRotation(Node *& t)
 	t->height = CalHeight(t);
 	pivot->right = t;
 	pivot->height = CalHeight(pivot);
+	if (t == root)
+		root = pivot;
 	t = pivot;
+	return;
 }
 
 void AVL::LeftRotation(Node *& t)
@@ -199,7 +202,10 @@ void AVL::LeftRotation(Node *& t)
 	t->height = CalHeight(t);
 	pivot->left = t;
 	pivot->height = CalHeight(pivot);
+	if (t == root)
+		root = pivot;
 	t = pivot;
+	return;
 }
 
 
