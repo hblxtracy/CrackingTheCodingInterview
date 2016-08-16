@@ -17,6 +17,25 @@ void PrintArray(int* A, int size)
 	return;
 }
 
+struct TreeNode
+{
+	int key;
+	TreeNode* left;
+	TreeNode* right;
+};
+
+TreeNode* MinTreeInsert(int arr[], int start, int end)
+{
+	if (start > end)
+		return NULL;
+	int mid = (start + end) / 2;
+	TreeNode* n = new TreeNode;
+	n->key = arr[mid];
+	n->left = MinTreeInsert(arr, start, mid-1);
+	n->right = MinTreeInsert(arr, mid+1, end);
+	return n;
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//Binary Search Tree
@@ -149,13 +168,18 @@ int _tmain(int argc, _TCHAR* argv[])
 	myRB2.Delete(myRB2.root, 50);
 	myRB2.InOrderTreeWalk(myRB2.root);
 	cout << endl;
-	getchar();
+
 
 
 
 	//4.2 Minimal Tree : Given a sorted(increasing order) array with unique integer elements, write an
 	//	algorithm to create a binary search tree with minimal height.
 	int minTree[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	TreeNode* n = MinTreeInsert(minTree, 0, 9);
+
+
+
+	getchar();
 
 	return 0;
 }
