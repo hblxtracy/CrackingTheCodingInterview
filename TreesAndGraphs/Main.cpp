@@ -122,8 +122,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//RB tree
 	int rbArraySize = 11;
-	int rbArray[] = { 1, 3, 2, 4, 5, 6, 8, 7, 9, 10, 11 };
-	//int rbArray[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+	//int rbArray[] = { 1, 3, 2, 4, 5, 6, 8, 7, 9, 10, 11 };
+	int rbArray[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 	cout << "RB Input Array: ";
 	PrintArray(rbArray, rbArraySize);
 
@@ -135,7 +135,28 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << endl;
 	}
 
+	RB myRB2;
+	myRB2.Insert(myRB2.root, myRB2.root, 50);
+	myRB2.Insert(myRB2.root, myRB2.root, 20);
+	myRB2.Insert(myRB2.root, myRB2.root, 30);
+	myRB2.Insert(myRB2.root, myRB2.root, 40);
+	myRB2.Insert(myRB2.root, myRB2.root, 45);
+	myRB2.Insert(myRB2.root, myRB2.root, 43);
+	myRB2.Insert(myRB2.root, myRB2.root, 44);
+	myRB2.Insert(myRB2.root, myRB2.root, 42);
+	myRB2.InOrderTreeWalk(myRB2.root);
+	cout << endl;
+	myRB2.Delete(myRB2.root, 50);
+	myRB2.InOrderTreeWalk(myRB2.root);
+	cout << endl;
 	getchar();
+
+
+
+	//4.2 Minimal Tree : Given a sorted(increasing order) array with unique integer elements, write an
+	//	algorithm to create a binary search tree with minimal height.
+	int minTree[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
 	return 0;
 }
 
