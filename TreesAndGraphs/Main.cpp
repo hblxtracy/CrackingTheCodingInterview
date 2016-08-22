@@ -36,6 +36,42 @@ TreeNode* MinTreeInsert(int arr[], int start, int end)
 	return n;
 }
 
+void CopyBST(TreeNode* node, int* &arr, int arrSize, int i)
+{
+	if (node == NULL)
+		return;
+	CopyBST(node->left, arr, arrSize, i);
+	if (i < arrSize)
+	{
+		arr[i] = node->key;
+		i++;
+	}
+	else
+		return;
+	CopyBST(node->right, arr, arrSize, i);
+}
+
+bool ValidateBST(TreeNode* node, int lastValue)
+{
+	if (node == NULL)
+		return true;
+	if (!ValidateBST(node->left, lastValue))
+		return false;
+	if (node->key < lastValue || node->key == lastValue)
+		return false;
+	lastValue = node->key;
+	if (!ValidateBST(node->right, lastValue))
+		return false;
+
+
+	return true;
+}
+
+int FirstCommonAncestor(TreeNode* node, int value1, int value2)
+{
+	return 0;
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//Binary Search Tree
@@ -177,6 +213,39 @@ int _tmain(int argc, _TCHAR* argv[])
 	int minTree[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 	TreeNode* n = MinTreeInsert(minTree, 0, 9);
 
+	//4.5 Validate BST: Implement a function to  check if a  binary tree is a binary  search  tree.
+	int* valArray = new int[10];
+	CopyBST(n, valArray, 10, 0);
+	for (int i = 0; i < 10; i++)
+		cout << i << " ";
+	cout << endl;
+
+	cout << ValidateBST(n, -1000000)<<endl;
+
+	//4.8 First Common Ancestor: Design an algorithm and write code to find the first common ancestor 
+	// of two nodes in a binary tree.Avoid storing additional nodes in a data structure.NOTE: This is not
+	//necessarily a binary search tree.
+
+	int binaryTree[] = { 3, 5, 2, 6, 9, 7, 1, 4, 8, 10};
+	TreeNode* bt = MinTreeInsert(binaryTree, 0, 9);
+
+
+
+	//4.9 BST Sequences : A binary search tree was created by traversing through an array from left to right
+	//	and inserting each element.Given a binary search tree with distinct elements, print all possible
+	//	arrays that could have led to this tree.
+	
+
+	//4.1O Check Subtree : Tl and T2 are two very large binary trees, with Tl much bigger than T2.Create an
+	//	algorithm to determine ifT2 is a subtree of Tl.
+	//	A tree T2 is a subtree of Tl if there exists a node n in Tl such that the subtree of n is identical to T2.
+	//	That is, if you cut off the tree at node n, the two trees would be identical.
+
+
+	//4.11 Random Node : You are implementing a binary search tree class from scratch, which, in addition
+	//	to insert, find, and delete, has a method getRandomNode() which returns a random node
+	//	from the tree.All nodes should be equally likely to be chosen.Design and implement an algorithm
+	//	for getRandomNode, and explain how you would implement the rest of the methods.
 
 
 	getchar();
