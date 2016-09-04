@@ -234,7 +234,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//4.9 BST Sequences : A binary search tree was created by traversing through an array from left to right
 	//	and inserting each element.Given a binary search tree with distinct elements, print all possible
 	//	arrays that could have led to this tree.
-	
+	 
 
 	//4.1O Check Subtree : Tl and T2 are two very large binary trees, with Tl much bigger than T2.Create an
 	//	algorithm to determine ifT2 is a subtree of Tl.
