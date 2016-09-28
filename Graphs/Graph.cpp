@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Graph.h"
 #include <iostream>
+#include <queue>
+#include <stack>
+#include <vector>
 using namespace std;
 
 Graph::Graph(int V)
@@ -52,5 +55,58 @@ void Graph::printGraph()
 		}
 		cout << "NULL"<<endl;
 	}
+}
 
+void Graph::BFS(int s)
+{
+	vector<bool> visited(V, false);
+	queue<int> orderQ;
+
+	visited[s] = true;
+	orderQ.push(s);
+	while (!orderQ.empty())
+	{
+		int curDest = orderQ.front();
+		auto i = array[curDest].head;
+		while (i)
+		{
+			if (!visited[i->dest])
+			{				
+				orderQ.push(i->dest);		
+				visited[i->dest] = true;
+			}
+			i = i->next;			
+		}
+		cout << curDest << " ";
+		orderQ.pop();
+	}
+}
+
+void Graph::DFS_Visit_rec(int s)
+{
+
+}
+
+void Graph::DFS_Visit_stack(int s)
+{
+	//vector<bool> visited(V, false);
+	//stack<int> orderStack;
+	//visited[s] = true;
+	//orderStack.push(s);
+	//while (!orderStack.empty())
+	//{	
+	//	int curDest = orderStack.top();
+	//	auto i = array[curDest].head;
+	//	while (i)
+	//	{		
+	//		if (!visited[i->dest])
+	//		{
+	//			orderStack.push(i->dest);
+	//			visited[i->dest] = true;
+	//		}
+	//		i = i->next;
+	//	}
+	//	cout << curDest << " ";
+	//	orderStack.pop();
+	//}
 }

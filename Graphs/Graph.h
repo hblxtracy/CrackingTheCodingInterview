@@ -25,5 +25,8 @@ public:
 	AdjListNode* newAdjListNode(int dest);
 	void addEdge(int src, int dest);
 	void printGraph();
+	void BFS(int s);
+	void DFS_Visit_rec(int s);
+	void DFS_Visit_stack(int s);
 };
 
