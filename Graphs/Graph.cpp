@@ -18,7 +18,7 @@ Graph::~Graph()
 }
 
 
-AdjListNode* Graph::newAdjListNode(int dest)
+Graph::AdjListNode* Graph::newAdjListNode(int dest)
 {
 	AdjListNode* n = new AdjListNode;
 	n->dest = dest;

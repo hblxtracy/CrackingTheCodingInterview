@@ -1,21 +1,20 @@
 #pragma once
-
-//A structure to represent an adjacency list node
-struct AdjListNode
-{
-	int dest;
-	struct AdjListNode* next;
-};
-
-// A structure to represent an adjacency list
-struct AdjList
-{
-	struct AdjListNode* head;
-};
-
 class Graph
 {
 private:
+	//A structure to represent an adjacency list node
+	struct AdjListNode
+	{
+		int dest;
+		struct AdjListNode* next;
+	};
+
+	// A structure to represent an adjacency list
+	struct AdjList
+	{
+		struct AdjListNode* head;
+	};
+
 	int V;
 	struct AdjList* array;
 
