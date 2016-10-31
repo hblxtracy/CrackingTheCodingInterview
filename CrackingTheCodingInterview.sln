@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArraysAndStrings", "ArraysAndStrings\ArraysAndStrings.vcxproj", "{A7410AB5-2924-4205-AC10-FF2B784884BE}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphs", "Graphs\Graphs.vcxproj", "{118D682C-5CE0-42E5-BF8C-1EA9119CFB1B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Trees", "Trees\Trees.vcxproj", "{E1904CCC-7700-4483-8513-FAB670854572}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SortingAndSearching", "SortingAndSearching\SortingAndSearching.vcxproj", "{D06D74DD-5857-4350-B781-AFDEE5175D0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,12 @@ Global
 		{E1904CCC-7700-4483-8513-FAB670854572}.Release|Win32.ActiveCfg = Release|Win32
 		{E1904CCC-7700-4483-8513-FAB670854572}.Release|Win32.Build.0 = Release|Win32
 		{E1904CCC-7700-4483-8513-FAB670854572}.Release|x64.ActiveCfg = Release|Win32
+		{D06D74DD-5857-4350-B781-AFDEE5175D0C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D06D74DD-5857-4350-B781-AFDEE5175D0C}.Debug|Win32.Build.0 = Debug|Win32
+		{D06D74DD-5857-4350-B781-AFDEE5175D0C}.Debug|x64.ActiveCfg = Debug|Win32
+		{D06D74DD-5857-4350-B781-AFDEE5175D0C}.Release|Win32.ActiveCfg = Release|Win32
+		{D06D74DD-5857-4350-B781-AFDEE5175D0C}.Release|Win32.Build.0 = Release|Win32
+		{D06D74DD-5857-4350-B781-AFDEE5175D0C}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

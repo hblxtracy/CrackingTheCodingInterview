@@ -11,11 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E1904CCC-7700-4483-8513-FAB670854572}</ProjectGuid>
+    <ProjectGuid>{D06D74DD-5857-4350-B781-AFDEE5175D0C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>TreesAndGraphs</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>Trees</ProjectName>
+    <RootNamespace>SortingAndSearching</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -81,23 +79,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AVL.h" />
-    <ClInclude Include="BST.h" />
-    <ClInclude Include="MaxHeap.h" />
-    <ClInclude Include="RB.h" />
+    <ClInclude Include="BubbleSort.h" />
+    <ClInclude Include="InsertionSort.h" />
+    <ClInclude Include="SelectionSort.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AVL.cpp" />
-    <ClCompile Include="BST.cpp" />
-    <ClCompile Include="MaxHeap.cpp" />
-    <ClCompile Include="RB.cpp" />
+    <ClCompile Include="BubbleSort.cpp" />
+    <ClCompile Include="InsertionSort.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SelectionSort.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
