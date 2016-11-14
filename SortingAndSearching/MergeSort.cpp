@@ -14,12 +14,14 @@ MergeSort::~MergeSort()
 
 void MergeSort::MergeSortFun(int* a, int l, int r)
 {
-	if (l < r)   {
+	if (l < r)   
+	{
 		int m = l + (r - l) / 2;
 		MergeSortFun(a, l, m);
 		MergeSortFun(a, m + 1, r);
 		Merge(a, l, m, r);
 	}
+	return;
 }
 
 // Merges two subarrays of arr[].  First subarray is arr[l..m]
@@ -62,4 +64,6 @@ void MergeSort::Merge(int* a, int l, int m, int r)
 		ci++;
 		ai++;
 	}	
+	delete[] b;
+	delete[] c;
 }

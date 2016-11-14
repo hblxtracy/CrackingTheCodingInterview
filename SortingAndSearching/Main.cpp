@@ -6,6 +6,7 @@
 #include "InsertionSort.h"
 #include "SelectionSort.h"
 #include "MergeSort.h"
+#include "QuickSort.h"
 #include <iostream>
 using namespace std;
 
@@ -57,6 +58,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	PrintArray(C, n);
 	delete[] C;
 
+
 	int* D = new int[n];
 	memcpy(D, a, sizeof(int)*n);
 	cout << "Original Array: " << endl;
@@ -66,6 +68,17 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "Sorted Array (MergeSort): " << endl;
 	PrintArray(D, n);
 	delete[] D;
+
+
+	int* E = new int[n];
+	memcpy(E, a, sizeof(int)*n);
+	cout << "Original Array: " << endl;
+	PrintArray(E, n);
+	QuickSort qs;
+	qs.QuickSortFun(E, 0, n - 1);
+	cout << "Sorted Array (QuickSort): " << endl;
+	PrintArray(E, n);
+	delete[] E;
 
 	cin.get();
 	return 0;
