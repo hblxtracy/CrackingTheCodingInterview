@@ -5,6 +5,7 @@
 #include "BubbleSort.h"
 #include "InsertionSort.h"
 #include "SelectionSort.h"
+#include "MergeSort.h"
 #include <iostream>
 using namespace std;
 
@@ -55,6 +56,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "Sorted Array (BubbleSort): " << endl;
 	PrintArray(C, n);
 	delete[] C;
+
+	int* D = new int[n];
+	memcpy(D, a, sizeof(int)*n);
+	cout << "Original Array: " << endl;
+	PrintArray(D, n);
+	MergeSort ms;
+	ms.MergeSortFun(D, 0, n - 1);
+	cout << "Sorted Array (MergeSort): " << endl;
+	PrintArray(D, n);
+	delete[] D;
 
 	cin.get();
 	return 0;
