@@ -19,6 +19,31 @@ void PrintArray(int a[], int n)
 	cout << endl;
 }
 
+int* SortedMerge(int* a, int* b, int la, int lb)
+{
+	int* p_a = a + la - 1;
+	int* p_b = b + lb - 1;
+	int* p_e = a + la + lb - 1;
+	while (p_a >= a || p_b >= b)
+	{
+		if (*p_a > *p_b)
+		{
+			*p_e = *p_a;
+			p_e--;
+			p_a--;
+		}
+		else
+		{
+			*p_e = *p_b;
+			p_e--;
+			p_b--;
+		}
+	
+	}
+
+	return a;
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	const int n = 8;
@@ -79,6 +104,24 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "Sorted Array (QuickSort): " << endl;
 	PrintArray(E, n);
 	delete[] E;
+
+
+	//10.1 Sorted Merge : You are given two sorted arrays, A and B, where A has a large enough buffer at the
+	//	end to hold B.Write a method to merge B into A in sorted order.
+
+	int arr_a[] = { 1, 3, 5, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	int arr_b[] = { 2, 4, 6, 8 };
+	int la = 4;
+	int lb = 4;
+	cout << "10.1: Array A: " << endl;
+	PrintArray(arr_a, la);
+	cout << "Array B: " << endl;
+	PrintArray(arr_b, lb);
+	cout << "Sorted Array: " << endl;
+	SortedMerge(arr_a, arr_b, la, lb);
+	PrintArray(arr_a, la + lb);
+
+
 
 	cin.get();
 	return 0;
