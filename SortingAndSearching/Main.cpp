@@ -8,6 +8,7 @@
 #include "MergeSort.h"
 #include "QuickSort.h"
 #include <iostream>
+#include <vector>
 using namespace std;
 
 void PrintArray(int a[], int n)
@@ -121,7 +122,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	SortedMerge(arr_a, arr_b, la, lb);
 	PrintArray(arr_a, la + lb);
 
-
+	//10.2 Group Anagrams : Write a method to sort an array of strings so that all the anagrams are next to
+	//	each other.
+	vector<string> vos = { "cat", "dog", "tac", "god", "act" };
 
 	cin.get();
 	return 0;
